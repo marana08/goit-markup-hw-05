@@ -864,7 +864,7 @@ img {
 }
 
 .form-checked-input:checked + .form-checked-label .form-checked-label-span svg {
-  fill: var(--cloud-color);
+  fill:#F4F4FD; ;
 }
 
 .form-button {
