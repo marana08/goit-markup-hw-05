@@ -778,6 +778,10 @@ img {
   fill: var(--iris-color);
 }
 
+.comment{
+  margin-bottom: 16px;
+}
+
 .modal-comments {
   border: 1px solid var(--navy-blue-modal-color);
   border-radius: 4px;
@@ -803,17 +807,21 @@ img {
   margin-bottom: 24px;
 }
 
-/* Правильне приховування чекбоксу */
 .form-checked-input {
+}
+
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
   margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
   border: 0;
+  padding: 0;
+  
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .form-checked-label {
@@ -851,9 +859,12 @@ img {
 }
 
 .form-checked-input:checked + .form-checked-label .form-checked-label-span {
-  background-color: var(--accent-color);
+  background-color: var(--ocean-color); 
   border: none;
-  fill: var(--light-color);
+}
+
+.form-checked-input:checked + .form-checked-label .form-checked-label-span svg {
+  fill: var(--cloud-color);
 }
 
 .form-button {
