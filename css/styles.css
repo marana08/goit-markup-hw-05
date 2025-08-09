@@ -628,6 +628,7 @@ img {
 }
 
 .send-input {
+  font-size: 12px;
   width: 264px;
   height: 40px;
   border: 1px solid var(--white-color);
@@ -636,8 +637,7 @@ img {
   background-color: transparent;
   color: var(--white-color);
   font-family: var(--font-family);
-  font-size: 16px;
-  line-height: 1.5;
+  line-height: 2;
   letter-spacing: 0.04em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -656,9 +656,6 @@ img {
   width: 100%;
   height: 100%;
   background-color: var(--navy-blue-modal-color);
-  /*opacity: 0;
-  visibility: hidden;
-  pointer-events: none;*/
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -669,6 +666,10 @@ img {
   pointer-events: auto;
 }
 
+.backdrop:not(.is-open) .modal {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
 .modal {
   position: absolute;
   top: 50%;
@@ -676,16 +677,13 @@ img {
   transform: translate(-50%, -50%);
   width: 408px;
   min-height: 584px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12),
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12),
     0 2px 1px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--dairy-color);
   border-radius: 4px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   padding: 72px 24px 24px 24px;
-}
-
-.backdrop:not(is-open) .modal {
-  transform: translate(-50%, -50%) scale(1.5);
 }
 
 .modal-button-icons {
@@ -713,14 +711,15 @@ img {
   border: none;
 }
 
+/* Зміна кольору іконки при hover/focus на кнопку */
+.modal-button-icons:hover .modal-button-close,
+.modal-button-icons:focus .modal-button-close {
+  fill: var(--white-color);
+}
+
 .modal-button-close {
   fill: var(--navy-blue-color);
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-button-close:hover,
-.modal-button-close:focus {
-  fill: var(--white-color);
 }
 
 .modal-text {
@@ -733,8 +732,6 @@ img {
   margin-bottom: 16px;
 }
 
-.modal-form {}
-
 .name-form {
   margin-bottom: 8px;
 }
@@ -742,7 +739,7 @@ img {
 .modal-label {
   font-weight: 400;
   font-size: 12px;
-  line-height: 1.16667;
+  line-height: 1.17;
   letter-spacing: 0.04em;
   color: var(--light-slate-color);
   display: block;
@@ -761,7 +758,7 @@ img {
   background-color: transparent;
   padding-left: 38px;
   outline: transparent;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-input:focus {
@@ -777,16 +774,16 @@ img {
   pointer-events: none;
 }
 
-.modal-input:focus+.modal-icons {
+.modal-input:focus + .modal-icons {
   fill: var(--iris-color);
 }
 
 .modal-comments {
-  border-color: 1px solid var(--navy-blue-modal-color);
+  border: 1px solid var(--navy-blue-modal-color);
   border-radius: 4px;
   font-weight: 400;
   font-size: 12px;
-  line-height: 1.16667;
+  line-height: 1.17;
   letter-spacing: 0.04em;
   color: var(--navy-blue-modal-color);
   height: 120px;
@@ -799,21 +796,30 @@ img {
 }
 
 .modal-comments:focus {
-  border-color: var(--iris-color);
+  border: 1px solid var(--iris-color);
 }
 
 .form-checked {
   margin-bottom: 24px;
 }
 
+/* Правильне приховування чекбоксу */
 .form-checked-input {
-  visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .form-checked-label {
   font-weight: 400;
   font-size: 12px;
-  line-height: 1.16;
+  line-height: 1.17;
   letter-spacing: 0.04em;
   color: var(--light-slate-color);
   cursor: pointer;
@@ -844,12 +850,11 @@ img {
   color: var(--iris-color);
 }
 
-.form-checked-input:checked+.form-checked-label .form-checked-label-span {
+.form-checked-input:checked + .form-checked-label .form-checked-label-span {
   background-color: var(--accent-color);
   border: none;
   fill: var(--light-color);
 }
-
 
 .form-button {
   border-radius: 4px;
@@ -865,17 +870,12 @@ img {
   letter-spacing: 0.04em;
   text-align: center;
   color: var(--white-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 10px;
-  cursor: pointer;
   display: block;
   margin: auto;
+  cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.form-button:hover{
+.form-button:hover {
   background: var(--ocean-color);
 }
