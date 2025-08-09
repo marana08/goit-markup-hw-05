@@ -861,10 +861,7 @@ img {
 .form-checked-input:checked + .form-checked-label .form-checked-label-span {
   background-color: var(--ocean-color); 
   border: none;
-}
-
-.form-checked-input:checked + .form-checked-label .form-checked-label-span svg {
-  fill:#F4F4FD; ;
+  fill: #F4F4FD; 
 }
 
 .form-button {
